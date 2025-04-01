@@ -1,7 +1,7 @@
 from Repositorios import Repositorio;
 
 repositorio = Repositorio.Repositorio();
-repositorio.ListarEstados2();
+repositorio.ListarProcedimiento();
 
 """
 VERSION DE PYTHON

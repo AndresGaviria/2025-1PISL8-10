@@ -85,7 +85,7 @@ class Repositorio:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
-			consulta: str = """SELECT * FROM estados""";
+			consulta: str = """{CALL proc_select_estados();}""";
 			cursor = conexion.cursor();
 			cursor.execute(consulta);
 
