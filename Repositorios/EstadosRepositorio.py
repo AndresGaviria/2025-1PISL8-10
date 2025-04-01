@@ -26,3 +26,21 @@ class EstadosRepositorio:
 				print(str(estado.GetId()) + ", " + estado.GetNombre());
 		except Exception as ex:
 			print(str(ex));
+	
+	def Guardar(self, nombre: str) -> None:
+		try:
+			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
+			cursor = conexion.cursor();
+
+			consulta: str = "{CALL proc_insert_estados('" + nombre + "', @Respuesta);}";
+			cursor.execute(consulta);
+
+			consulta = "SELECT @Respuesta;";
+			cursor.execute(consulta);
+			print(cursor.fetchone()[0]);
+			cursor.commit();
+
+			cursor.close();
+			conexion.close();
+		except Exception as ex:
+			print(str(ex));

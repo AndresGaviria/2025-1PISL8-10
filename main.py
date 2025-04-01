@@ -1,6 +1,7 @@
 from Repositorios import Repositorio;
 
 repositorio = Repositorio.Repositorio();
+repositorio.InsertBasico("Test 3");
 repositorio.ListarProcedimiento();
 
 """

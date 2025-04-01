@@ -104,25 +104,20 @@ class Repositorio:
 		except Exception as ex:
 			print(str(ex));
 
-	def InsertarProcedimiento(self) -> None:
+	def InsertBasico(self, nombre: str) -> None:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
-
-			consulta: str = """{CALL proc_select_estados();}""";
 			cursor = conexion.cursor();
+
+			consulta: str = "{CALL proc_insert_estados('" + nombre + "', @Respuesta);}";
 			cursor.execute(consulta);
 
-			lista: list = [];
-			for elemento in cursor:
-				entidad: Estados = Estados.Estados();
-				entidad.SetId(elemento[0]);
-				entidad.SetNombre(elemento[1]);
-				lista.append(entidad);
+			consulta = "SELECT @Respuesta;";
+			cursor.execute(consulta);
+			print(cursor.fetchone()[0]);
+			cursor.commit();
 
 			cursor.close();
 			conexion.close();
-
-			for estado in lista:
-				print(str(estado.GetId()) + ", " + estado.GetNombre());
 		except Exception as ex:
 			print(str(ex));
