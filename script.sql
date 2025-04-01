@@ -38,3 +38,15 @@ BEGIN
         `nombre`
     FROM `db_personas`.`estados`;
 END$$
+
+DELIMITER $$
+CREATE PROCEDURE `db_personas`.`proc_insert_estados`(
+    IN `Nombre` VARCHAR(50),
+    INOUT `Respuesta` INT
+)
+BEGIN
+    INSERT INTO `db_personas`.`estados` (`nombre`) 
+    VALUES (`Nombre`);
+
+    SET `Respuesta` = 0;
+END$$
