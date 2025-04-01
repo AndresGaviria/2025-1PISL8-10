@@ -30,3 +30,11 @@ INSERT INTO `db_personas`.`personas` (`cedula`,`nombre`,`estado`,`fecha`,`activo
 VALUES ('87987497','Pepito Perez',1,NOW(),1);
 INSERT INTO `db_personas`.`personas` (`cedula`,`nombre`,`estado`,`fecha`,`activo`) 
 VALUES ('12354646','Susana Lopez',2,NOW(),0);
+
+DELIMITER $$
+CREATE PROCEDURE `db_personas`.`proc_select_estados`()
+BEGIN
+    SELECT `id`,
+        `nombre`
+    FROM `db_personas`.`estados`;
+END$$

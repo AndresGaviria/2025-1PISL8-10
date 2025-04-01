@@ -4,7 +4,7 @@ from Utilidades import Configuracion;
 
 class Repositorio:
 
-	def ConexionBasica(self) -> None:
+	def ListarEstados(self) -> None:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
@@ -20,7 +20,7 @@ class Repositorio:
 		except Exception as ex:
 			print(str(ex));
 
-	def ConexionBasica2(self) -> None:
+	def ListarEstados2(self) -> None:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
@@ -30,7 +30,7 @@ class Repositorio:
 
 			lista: list = [];
 			for elemento in cursor:
-				entidad: Estados = Estados();
+				entidad: Estados = Estados.Estados();
 				entidad.SetId(elemento[0]);
 				entidad.SetNombre(elemento[1]);
 				lista.append(entidad);
@@ -43,7 +43,7 @@ class Repositorio:
 		except Exception as ex:
 			print(str(ex));
 
-	def ConexionBasica3(self) -> None:
+	def ListarInnerJoin(self) -> None:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
@@ -67,7 +67,7 @@ class Repositorio:
 		except Exception as ex:
 			print(str(ex));
 
-	def ConexionBasica4(self) -> None:
+	def InsertBasico(self) -> None:
 		try:
 			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
@@ -78,5 +78,28 @@ class Repositorio:
 
 			cursor.close();
 			conexion.close();
+		except Exception as ex:
+			print(str(ex));
+
+	def ListarProcedimiento(self) -> None:
+		try:
+			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
+
+			consulta: str = """SELECT * FROM estados""";
+			cursor = conexion.cursor();
+			cursor.execute(consulta);
+
+			lista: list = [];
+			for elemento in cursor:
+				entidad: Estados = Estados.Estados();
+				entidad.SetId(elemento[0]);
+				entidad.SetNombre(elemento[1]);
+				lista.append(entidad);
+
+			cursor.close();
+			conexion.close();
+
+			for estado in lista:
+				print(str(estado.GetId()) + ", " + estado.GetNombre());
 		except Exception as ex:
 			print(str(ex));

@@ -1,10 +1,9 @@
 from Repositorios import Repositorio;
 
 repositorio = Repositorio.Repositorio();
-repositorio.ConexionBasica();
+repositorio.ListarEstados2();
 
 """
-Prueba
 VERSION DE PYTHON
 py -3 --version
 EJECUTAR
