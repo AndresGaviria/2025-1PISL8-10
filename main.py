@@ -1,6 +1,3 @@
-import datetime;
-import decimal;
-import pyodbc;
 from Entidades import Estados;
 from Repositorios import Repositorio;
 
@@ -9,9 +6,6 @@ print(estado.GetNombre());
 
 repositorio = Repositorio.Repositorio();
 repositorio.ConexionBasica();
-# repositorio.ConexionBasica2();
-# repositorio.ConexionBasica3();
-# repositorio.ConexionBasica4();
 
 """
 VERSION DE PYTHON
