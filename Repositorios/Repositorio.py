@@ -5,17 +5,20 @@ from Utilidades import Configuracion;
 class Repositorio:
 
 	def ConexionBasica(self) -> None:
-		conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
+		try:
+			conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);
 
-		consulta: str = """SELECT * FROM estados""";
-		cursor = conexion.cursor();
-		cursor.execute(consulta);
+			consulta: str = """SELECT * FROM estados""";
+			cursor = conexion.cursor();
+			cursor.execute(consulta);
 
-		for elemento in cursor:
-			print(elemento);
+			for elemento in cursor:
+				print(elemento);
 
-		cursor.close();
-		conexion.close();
+			cursor.close();
+			conexion.close();
+		except Exception as ex:
+			print(str(ex));
 
 	def ConexionBasica2(self) -> None:
 		conexion = pyodbc.connect(Configuracion.Configuracion.strConnection);

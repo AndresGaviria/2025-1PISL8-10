@@ -1,8 +1,4 @@
-from Entidades import Estados;
 from Repositorios import Repositorio;
-
-estado = Estados.Estados();
-print(estado.GetNombre());
 
 repositorio = Repositorio.Repositorio();
 repositorio.ConexionBasica();
