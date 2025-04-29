@@ -25,9 +25,12 @@ class EncriptarAES:
     secretKey = os.urandom(32);
 
     def Ejecutar(self) -> None:
-        valor = "Clase";
+        valor = "Test";
         cifrado = self.Cifrar(valor);
         print(cifrado);
+
+        decifrado = self.Decifrar(cifrado);
+        print(decifrado);
 
     def Cifrar(self, valor: str) -> str:
         aesCipher = AES.new(self.secretKey, AES.MODE_GCM);
