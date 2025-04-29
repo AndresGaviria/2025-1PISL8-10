@@ -2,11 +2,13 @@ import jwt;
 
 try:
     print("JWT");
-    clave = "kjhdf1gydi4ufy654gi4uy";
+    clave = "12346467987987";
 
-    valor = jwt.encode({"Usuario":"123Abc"}, clave, algorithm="HS256");
+    valor = jwt.encode({"Usuario":"HolaMundo"}, clave, algorithm="HS256");
     print(valor);
-    
+
+    resultado = jwt.decode(valor, clave, algorithms="HS256");
+    print(resultado);
 except Exception as ex:
     print(ex);
 
