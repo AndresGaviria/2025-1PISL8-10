@@ -4,7 +4,13 @@ from Crypto.Cipher import AES;
 
 class EncriptarMD5:
     def Ejecutar(self) -> None:
-        valor = "Clase de integracion";
+        valor = "Clase";
+        cifrado = self.Cifrar(valor);
+        print(cifrado);
+        valor = "ClasE";
+        cifrado = self.Cifrar(valor);
+        print(cifrado);
+        valor = "ClaSE";
         cifrado = self.Cifrar(valor);
         print(cifrado);
 
