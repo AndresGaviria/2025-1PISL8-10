@@ -49,7 +49,6 @@ encriptarMD5.Ejecutar();
 encriptarAES = EncriptarAES();
 encriptarAES.Ejecutar();
 
-
 """
 VERSION DE PYTHON
 py -3 --version
