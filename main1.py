@@ -21,8 +21,30 @@ class EncriptarMD5:
     def Decifrar(self, valor: str) -> str:
         return None;
 
+class EncriptarAES:
+    secretKey = os.urandom(32);
+
+    def Ejecutar(self) -> None:
+        valor = "Clase";
+        cifrado = self.Cifrar(valor);
+        print(cifrado);
+
+    def Cifrar(self, valor: str) -> str:
+        aesCipher = AES.new(self.secretKey, AES.MODE_GCM);
+        ciphertext, authTag = aesCipher.encrypt_and_digest(str.encode(valor));
+        return (ciphertext, aesCipher.nonce, authTag);
+
+    def Decifrar(self, valor: str) -> str:
+        (ciphertext, nonce, authTag) = valor;
+        aesCipher = AES.new(self.secretKey, AES.MODE_GCM, nonce);
+        plaintext = aesCipher.decrypt_and_verify(ciphertext, authTag);
+        return plaintext;
+
 encriptarMD5 = EncriptarMD5();
 encriptarMD5.Ejecutar();
+
+encriptarAES = EncriptarAES();
+encriptarAES.Ejecutar();
 
 
 """
