@@ -15,7 +15,6 @@ class EncriptarMD5:
     def Decifrar(self, valor: str) -> str:
         return None;
 
-
 encriptarMD5 = EncriptarMD5();
 encriptarMD5.Ejecutar();
 
