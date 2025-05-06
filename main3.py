@@ -84,7 +84,7 @@ def Listar(entrada: str) -> str:
         entrada = entrada.replace("'", '"');
         datos: dict = json.loads(entrada);
 
-        if not "Token" in datos.key():
+        if not "Token" in datos.keys():
             respuesta["Error"] = "lbNoAutenticacion";
             return respuesta;
 
