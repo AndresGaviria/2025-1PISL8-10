@@ -56,7 +56,7 @@ class Repositorio:
 
 			return respuesta;
 		except Exception as ex:
-			respuesta["Error"] = ex;
+            respuesta["Error"] = str(ex);
 			return respuesta;
 
 app = flask.Flask(__name__);
