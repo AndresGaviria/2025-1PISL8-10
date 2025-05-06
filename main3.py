@@ -63,7 +63,7 @@ class Repositorio:
 				entidad: Estados = Estados();
 				entidad.SetId(elemento[0]);
 				entidad.SetNombre(self.encriptarAES.Decifrar(elemento[1]));
-				lista[str(contador)] = entidad;
+				#lista[str(contador)] = entidad;
 				contador = contador + 1;
 
 			cursor.close();
@@ -75,10 +75,22 @@ class Repositorio:
 			respuesta["Error"] = ex;
 			return respuesta;
 
-datos: dict = { };
-repositorio = Repositorio();
-respuesta: dict = repositorio.Listar(datos);
-print(respuesta);
+app = flask.Flask(__name__);
+@app.route('/main3/Listar/<string:entrada>', methods=["GET"]) # methods=["POST"]
+def Listar(entrada: str) -> str:
+    respuesta = { };
+    try:
+        datos: dict = { };
+        repositorio = Repositorio();
+        respuesta = repositorio.Listar(datos);
+        return flask.jsonify(respuesta);
+    except Exception as ex:
+        respuesta["Error"] = str(ex);
+        return respuesta;
+
+app.run('localhost', 4041);
+
+
 
 """
 VERSION DE PYTHON
@@ -91,4 +103,5 @@ py -m pip install pyodbc
 py -m pip install Flask
 py -m pip install jsonify
 py -m pip install pycryptodome
+
 """
