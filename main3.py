@@ -63,7 +63,9 @@ app = flask.Flask(__name__);
 def Listar(entrada: str) -> str:
     respuesta = { };
     try:
-        datos: dict = { };
+        entrada = entrada.replace("'", '"');
+        datos = json.loads(entrada);
+        
         repositorio = Repositorio();
         respuesta = repositorio.Listar(datos);
         return flask.jsonify(respuesta);
