@@ -1,4 +1,5 @@
 import json;
+import jwt;
 import flask;
 import jsonify;
 import pyodbc;
@@ -57,16 +58,38 @@ class Repositorio:
 
 			return respuesta;
 		except Exception as ex:
-            respuesta["Error"] = str(ex);
+			respuesta["Error"] = str(ex);
 			return respuesta;
 
 app = flask.Flask(__name__);
+@app.route('/main3/Token/<string:entrada>', methods=["GET"]) # methods=["POST"]
+def Token(entrada: str) -> str:
+    respuesta = { };
+    try:
+        entrada = entrada.replace("'", '"');
+        datos: dict = json.loads(entrada);
+
+        clave = "12346467987987";
+        valor = jwt.encode({"Usuario":"HolaMundo"}, clave, algorithm="HS256");
+        respuesta["Token"] = valor;
+        return flask.jsonify(respuesta);
+    except Exception as ex:
+        respuesta["Error"] = str(ex);
+        return respuesta;
+
 @app.route('/main3/Listar/<string:entrada>', methods=["GET"]) # methods=["POST"]
 def Listar(entrada: str) -> str:
     respuesta = { };
     try:
         entrada = entrada.replace("'", '"');
         datos: dict = json.loads(entrada);
+
+        if not "Token" in datos.key():
+            respuesta["Error"] = "lbNoAutenticacion";
+            return respuesta;
+
+        clave = "12346467987987";
+        jwt.decode(datos["Token"], clave, algorithms="HS256");
 
         repositorio = Repositorio();
         respuesta = repositorio.Listar(datos);
