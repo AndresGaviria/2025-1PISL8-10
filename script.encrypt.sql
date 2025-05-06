@@ -20,6 +20,8 @@ CREATE TABLE `db_personas`.`personas` (
     CONSTRAINT `fk_personas__estados` FOREIGN KEY (`estado`) REFERENCES `estados`(`id`)
 );
 
+INSERT INTO `db_personas`.`estados` (`nombre`) VALUES ('2499ee47842e|d9018d1c88e7f64ff748032c52936a71|ea4ceb9c95af97686e655b365de6e44f');
+
 DELIMITER $$
 CREATE PROCEDURE `db_personas`.`proc_select_estados`()
 BEGIN
