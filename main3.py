@@ -5,21 +5,6 @@ import hashlib;
 import binascii, os;
 from Crypto.Cipher import AES;
 
-class Estados:
-	id: int = 0;
-
-	def GetId(self) -> int:
-		return self.id;
-	def SetId(self, value: int) -> None:
-		self.id = value;
-
-	nombre: str = None;
-
-	def GetNombre(self) -> str:
-		return self.nombre;
-	def SetNombre(self, value: str) -> None:
-		self.nombre = value;
-
 class EncriptarAES:
     secretKey = b'\x11\x9b$\xe8\x13\xe7\x18\xe7\x8e{\x86v\x1ab\x8c\xb7\x911Q@ \xca\xa4e\xc75H\x95\x89\xa6\x9d\xab';
 
@@ -58,18 +43,16 @@ class Repositorio:
 			cursor.execute(consulta);
 
 			contador = 0;
-			lista: dict = {};
 			for elemento in cursor:
-				entidad: Estados = Estados();
-				entidad.SetId(elemento[0]);
-				entidad.SetNombre(self.encriptarAES.Decifrar(elemento[1]));
-				#lista[str(contador)] = entidad;
+				lista: dict = {};
+				lista["Id"] = elemento[0];
+				lista["Nombre"] = self.encriptarAES.Decifrar(elemento[1]);
+				respuesta[str(contador)] = lista;
 				contador = contador + 1;
 
 			cursor.close();
 			conexion.close();
 
-			respuesta["Lista"] = lista;
 			return respuesta;
 		except Exception as ex:
 			respuesta["Error"] = ex;
