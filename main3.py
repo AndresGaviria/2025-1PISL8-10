@@ -47,7 +47,8 @@ class Repositorio:
 			for elemento in cursor:
 				lista: dict = {};
 				lista["Id"] = elemento[0];
-				lista["Nombre"] = self.encriptarAES.Decifrar(elemento[1]);
+				lista["Nombre"] = elemento[1];
+				# lista["Nombre"] = self.encriptarAES.Decifrar(elemento[1]);
 				respuesta[str(contador)] = lista;
 				contador = contador + 1;
 
