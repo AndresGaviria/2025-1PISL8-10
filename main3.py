@@ -1,3 +1,4 @@
+import json;
 import flask;
 import jsonify;
 import pyodbc;
@@ -64,8 +65,8 @@ def Listar(entrada: str) -> str:
     respuesta = { };
     try:
         entrada = entrada.replace("'", '"');
-        datos = json.loads(entrada);
-        
+        datos: dict = json.loads(entrada);
+
         repositorio = Repositorio();
         respuesta = repositorio.Listar(datos);
         return flask.jsonify(respuesta);
