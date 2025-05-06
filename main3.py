@@ -73,8 +73,6 @@ def Listar(entrada: str) -> str:
 
 app.run('localhost', 4041);
 
-
-
 """
 VERSION DE PYTHON
 py -3 --version
